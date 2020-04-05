@@ -1,5 +1,4 @@
 import { equal } from 'assert';
-import Axios from 'axios';
 import chai, { expect } from 'chai';
 import fs from 'fs';
 import { JWK, JWKS, JWT } from 'jose';
@@ -9,10 +8,6 @@ import path from 'path';
 import sinon from 'sinon';
 
 import AccessTokenHandler from '../src/access-token-handler';
-import AuthenticationOption from '../src/authentication-options';
-import ClientDiscovery from '../src/discovery/client-discovery';
-import InvalidTokenError from '../src/errors/invalid-token-error';
-import JwtTokenHandler from '../src/jwt-token/jwt-token-handler';
 import { SupportedTokens } from '../src/models/supported-tokens.model';
 
 const jws = "bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjlXVFR1Nm9nZzQyamR2WUpaTUZRYXciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1ODU5NTA3MzMsImV4cCI6MTU4NTk1NDMzMywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMCIsImF1ZCI6ImpwX2FwaSIsImNsaWVudF9pZCI6IklTNC1BZG1pbiIsInN1YiI6IjA5MDRlNzVlLTQxM2QtNDg2MC05MzI5LWIyNTg3MjQ3MDY1YSIsImF1dGhfdGltZSI6MTU4NTcyMzY3NSwiaWRwIjoibG9jYWwiLCJpczQtcmlnaHRzIjoibWFuYWdlciIsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwiZW1haWwiOiJiaGRlYnJpdG9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJicnVubyIsInNjb3BlIjpbInJvbGUiLCJlbWFpbCIsInByb2ZpbGUiLCJvcGVuaWQiLCJqcF9hcGkuaXM0Il0sImFtciI6WyJwd2QiXX0.S8fc_c1V887By0gJoYk0Neoeh1OvbHJdNiAzNOMhWaSVxAymdahRTsCCf-43XHiDzP4cyT9K6CdGZbU_z7l7UQ";

@@ -28,7 +28,7 @@ export default class AccessTokenHandler {
             supportedTokens = SupportedTokens.Both,
             tokenTypeHint = TokenTypes.AccessToken,
             enableCache = true,
-            cacheDuration = 600,
+            cacheDuration = 300,
             checkAudience = true
         }: any) {
 

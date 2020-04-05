@@ -1,15 +1,24 @@
-#  OAuth 2.0 - node AccessTokenValidation
+# Node JS - OAuth 2.0 -  Access Token Validation
+
+[![npm version](https://badge.fury.io/js/node-accesstoken-validation.svg)](https://badge.fury.io/js/node-accesstoken-validation)
+
 
 Authentication handler for node that allows accepting both JWTs and reference tokens (Introspection). 
 
 
+## Install
+
+```
+$ npm install --save node-accesstoken-validation
+```
+
 ## JWT Usage
+
 Simply specify authority and API name (aka audience):
 
 ```typescript
 
-import AccessTokenHandler from './access-token-handler';
-import AuthenticationOptions from './authentication-options';
+import { AccessTokenHandler } from 'node-accesstoken-validation';
 
 
 var at_validation = new AccessTokenHandler({
@@ -26,8 +35,7 @@ Additionally specify the API secret for the introspection endpoint:
 
 ```typescript
 
-import AccessTokenHandler from './access-token-handler';
-import AuthenticationOptions from './authentication-options';
+import { AccessTokenHandler } from 'node-accesstoken-validation';
 
 var at_validation = new AccessTokenHandler({
     authority: 'https://localhost:5000',
@@ -52,7 +60,7 @@ In addition to API name checking, you can do more fine-grained scope checks.
 
 ## Cache response
 
-By default response stay cached by 5 minutes (600 sec). You can change or disable.
+By default response stay cached by 5 minutes (300 sec). You can change or disable.
 
 
 ```typescript
@@ -62,7 +70,7 @@ var at_validation = new AccessTokenHandler({
     apiName: "<api name>",
     apiSecret: "<api secret>",
     enableCache: true,
-    cacheDuration: 600
+    cacheDuration: 300
 });
 
 at_validation.Handle('bearer <bearer>').then(console.log).catch(console.warn);
