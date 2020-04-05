@@ -1,0 +1,17 @@
+{
+    "iss": "https://localhost:5000",
+    "nbf": 1586032444,
+    "exp": 1586036044,
+    "aud": "jp_api",
+    "client_id": "IS4-Admin",
+    "sub": "0904e75e-413d-4860-9329-b2587247065a",
+    "auth_time": 1585723675,
+    "idp": "local",
+    "amr": "pwd",
+    "is4-rights": "manager",
+    "role": "Administrator",
+    "email": "bhdebrito@gmail.com",
+    "username": "bruno",
+    "active": true,
+    "scope": "jp_api.is4"
+}
