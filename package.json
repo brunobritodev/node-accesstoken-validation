@@ -10,7 +10,7 @@
     },
     "homepage": "https://github.com/brunohbrito/node-access-token-validation#readme",
     "license": "MIT",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Component to validate Bearer Token. It validate JWT tokens and reference tokens (Introspection) as well. It support almost all algorithms. RSA, ECDsa, HMAC. Trough jose.",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",

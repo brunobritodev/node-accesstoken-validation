@@ -146,4 +146,26 @@ describe('JWT Bearer Token', () => {
         sinon.verify();
         sinon.restore();
     });
+
+    
+    it('Should accept audience as array', async () => {
+        const newJws = 'bearer eyJhbGciOiJFUzI1NiIsImtpZCI6Imx2b2wtSi11S1p4X2hUTk5PTEctNnciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1ODYxOTI4MTcsImV4cCI6MTU4NjE5NjQxNywiaXNzIjoiaHR0cHM6Ly9zc28uaG1sLmRpZ2l0YWwtc2VndXJvc3VuaW1lZC5jb20iLCJhdWQiOlsiYXBpLXNhdWRlIiwiYXBpLXZpZGEiLCJhcGktb2RvbnRvIiwiYXBpLXByZXYiLCJhcGktcmUiLCJhcGktcG9ydGFscGoiXSwiY2xpZW50X2lkIjoiY2xpZW50LXRlc3RlIiwic3ViIjoiMTdkNWRlZmQtMGFmOC00NDBjLThmYzQtZjc1YjI4MGJkYThjIiwiYXV0aF90aW1lIjoxNTg1MTU3NDU0LCJpZHAiOiJsb2NhbCIsInNhdWRlIjpbInBqLXNhdWRlLXBhZHJhbyIsInBqLXNhdWRlLW1vdmkiXSwicG9ydGFscGoiOiJ0ZXN0ZSIsIm5hbWUiOiJkYW5pZWwuYW1hcmFsIiwic29jaWFsX251bWJlciI6IjQwMDE4NDg0MDAwMTEwIiwic2NvcGUiOlsicHJvZmlsZSIsIm9wZW5pZCIsInNhdWRlLXBhZHJhbyIsInNhdWRlLW1vdmkiLCJzYXVkZS1zZWJyYWUiLCJzYXVkZS12aXZvIiwidmlkYS1wYWRyYW8iLCJvZG9udG8tcGFkcmFvIiwicHJldi1wYWRyYW8iLCJyZS1wYWRyYW8iLCJwb3J0YWxwai1wYWRyYW8iXSwiYW1yIjpbInB3ZCJdfQ.dZIDQ33-8OQFEapnU46KGjV1OnIbdt6dogkmBf3EW0PXi1TTD6E1WsL7Ox7ExqboiVANjBwV5VCq9HE1vLxCvg';
+        var test: any = JWT.decode(newJws.replace('bearer ', ''));
+        sinon.stub(JWT, 'verify').returns(test);
+
+
+        let atHandler = new AccessTokenHandler({
+            authority: authority,
+            apiName: "api-saude",
+            requireHttpsMetadata: true
+        });
+
+        let jwtHandle = sinon.spy(atHandler, 'checkJwtToken');
+        await atHandler.Handle(newJws);
+        await atHandler.Handle(newJws);
+
+        assert(jwtHandle.calledOnce);
+        sinon.verify();
+        sinon.restore();
+    });
 });

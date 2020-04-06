@@ -1,9 +1,11 @@
 import { JWT } from 'jose';
 import url_parser from 'url';
+import { isArray } from 'util';
 
 import ClientDiscovery from '../discovery/client-discovery';
 import DiscoveryDocumentResponse from '../discovery/discovery-document-response';
 import InvalidTokenError from '../errors/invalid-token-error';
+import TokenValidation from '../models/token-validation.model';
 import JwtBearerOptions from './jwt-bearer-options';
 
 export default class JwtTokenHandler {
@@ -30,20 +32,13 @@ export default class JwtTokenHandler {
         if (!this.options.checkAudience)
             return claims;
 
-        if (this.hasClaims(claims, "aud", this.options.audience))
+        if (TokenValidation.hasClaims(claims, "aud", this.options.audience))
             return claims;
 
         throw new InvalidTokenError(this.options.authority, `Failed to validate the token. Audience validation failed: ${this.options.audience}`, token);
     }
 
 
-    private hasClaims(claims: any, key: string, value: string) {
-
-        var foundClaims = claims[key] == value;
-        if (foundClaims)
-            return true;
-        return false;
-    }
     /// <summary>
     /// Determines whether uses a secure scheme according to the policy.
     /// </summary>
